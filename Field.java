@@ -2,7 +2,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-
+ 
 /**
  * Represent a rectangular grid of field positions.
  * Each position stores an Animal

@@ -1,0 +1,17 @@
+#Thu Feb 20 17:56:38 GMT 2025
+bluej.teamsettings.git.branch=
+bluej.teamsettings.git.protocol=https
+bluej.teamsettings.git.repositoryPrefix=/F1ni/PPA-CW-Simulation.git
+bluej.teamsettings.git.server=github.com
+bluej.teamsettings.ignore1=.*\\.class
+bluej.teamsettings.ignore2=bluej\\.pkh
+bluej.teamsettings.ignore3=team\\.defs
+bluej.teamsettings.ignore4=.*\\.ctxt
+bluej.teamsettings.ignore5=.*\\~
+bluej.teamsettings.ignore6=.*\\\#
+bluej.teamsettings.ignore7=.*\\\#backup
+bluej.teamsettings.ignore8=\\.DS_Store
+bluej.teamsettings.user=F1ni
+bluej.teamsettings.vcs=git
+bluej.teamsettings.yourEmail=ArnavGupta1706@gmail.com
+bluej.teamsettings.yourName=Arnav Gupta
