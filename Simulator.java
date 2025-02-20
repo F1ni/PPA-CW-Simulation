@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
  * @author David J. Barnes, Michael Kölling and Jeffery Raphael
  * @version 2025.02.10
  */
-
+// danunu can you see this message
 public class Simulator {
 
     private static final double FOX_CREATION_PROBABILITY = 0.02;
