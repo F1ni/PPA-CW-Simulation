@@ -5,6 +5,7 @@ import java.util.Iterator;
 import javafx.scene.paint.Color; 
 
 /**
+ * GAY
  * A simple predator-prey simulator, based on a rectangular field
  * containing rabbits and foxes.
  * 
