@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  * @author David J. Barnes, Michael Kölling & Jeffery Raphael
  * @version 2024.02.03
  */
-
+// hello dannunu can you see this message
 public class SimulatorView extends Application {
 
     public static final int GRID_WIDTH = 100;
