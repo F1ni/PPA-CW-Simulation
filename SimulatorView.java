@@ -101,7 +101,7 @@ public class SimulatorView extends Application {
                     fieldCanvas.drawMark(col, row, animal.getColor());
                 }
                 else {
-                    fieldCanvas.drawMark(col, row, EMPTY_COLOR);
+                    fieldCanvas.drawMark(col, row, Color.LIGHTGREEN);
                 }
             }
         }

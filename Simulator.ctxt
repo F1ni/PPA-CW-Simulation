@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Simulator
-comment0.text=\r\n\ GAY\r\n\ A\ simple\ predator-prey\ simulator,\ based\ on\ a\ rectangular\ field\r\n\ containing\ rabbits\ and\ foxes.\r\n\ \r\n\ @author\ David\ J.\ Barnes,\ Michael\ K\u00F6lling\ and\ Jeffery\ Raphael\r\n\ @version\ 2025.02.10\r\n
+comment0.text=\r\n\ A\ simple\ predator-prey\ simulator,\ based\ on\ a\ rectangular\ field\r\n\ containing\ rabbits\ and\ foxes.\r\n\ \r\n\ @author\ David\ J.\ Barnes,\ Michael\ K\u00F6lling\ and\ Jeffery\ Raphael\r\n\ @version\ 2025.02.10\r\n
 comment1.params=depth\ width
 comment1.target=Simulator(int,\ int)
 comment1.text=\r\n\ Create\ a\ simulation\ field\ with\ the\ given\ size.\r\n\ @param\ depth\ Depth\ of\ the\ field.\ Must\ be\ greater\ than\ zero.\r\n\ @param\ width\ Width\ of\ the\ field.\ Must\ be\ greater\ than\ zero.\r\n

@@ -10,11 +10,11 @@ import javafx.scene.paint.Color;
  * @version 2025.02.10
  */
 
-public class Rabbit extends Animal {
+public class Rat extends Animal {
 
-    private static final int BREEDING_AGE = 5;
-    private static final int MAX_AGE = 40;
-    private static final double BREEDING_PROBABILITY = 0.12;
+    private static final int BREEDING_AGE = 2;
+    private static final int MAX_AGE = 20;
+    private static final double BREEDING_PROBABILITY = 0.08;
     private static final int MAX_LITTER_SIZE = 4;
     private static final Random rand = Randomizer.getRandom();
     
@@ -28,7 +28,7 @@ public class Rabbit extends Animal {
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Rabbit(boolean randomAge, Field field, Location location, Color col) {
+    public Rat(boolean randomAge, Field field, Location location, Color col) {
         super(field, location, col, randomAge);
         age = 0;
         
@@ -59,7 +59,7 @@ public class Rabbit extends Animal {
     
     @Override
     protected Animal createYoung(Field field, Location loc) {
-        return new Rabbit(false, field, loc, getColor());
+        return new Rat(false, field, loc, getColor());
     }
     
     /**
@@ -67,10 +67,10 @@ public class Rabbit extends Animal {
      * around. Sometimes it will breed or die of old age.
      * @param newRabbits A list to return newly born rabbits.
      */
-    public void act(List<Animal> newRabbits) {
+    public void act(List<Animal> newRats) {
         incrementAge();
         if(isAlive()) {
-            giveBirth(newRabbits);            
+            giveBirth(newRats);            
             // Try to move into a free location.
             Location newLocation = getField().getFreeAdjacentLocation(getLocation());
             if(newLocation != null) {

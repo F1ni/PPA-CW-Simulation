@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Bear
+comment1.params=randomAge\ field\ location\ col
+comment1.target=Bear(boolean,\ Field,\ Location,\ javafx.scene.paint.Color)
+comment2.params=
+comment2.target=int\ getBreedingAge()
+comment3.params=
+comment3.target=int\ getMaxAge()
+comment4.params=
+comment4.target=double\ getBreedingProbability()
+comment5.params=
+comment5.target=int\ getMaxLitterSize()
+comment6.params=field\ loc
+comment6.target=Animal\ createYoung(Field,\ Location)
+comment7.params=newBears
+comment7.target=void\ act(java.util.List)
+comment8.params=
+comment8.target=Location\ findFood()
+numComments=9
