@@ -14,7 +14,7 @@ import java.util.Random;
 public class Field {
     private static final Random rand = Randomizer.getRandom();
     private int depth, width;
-    private Animal[][] field;
+    private Object[][] field;
 
     /**
      * Represent a field of the given dimensions.
@@ -24,7 +24,7 @@ public class Field {
     public Field(int depth, int width) {
         this.depth = depth;
         this.width = width;
-        field = new Animal[depth][width];
+        field = new Object[depth][width];
     }
 
     /**
@@ -53,8 +53,8 @@ public class Field {
      * @param row Row coordinate of the location.
      * @param col Column coordinate of the location.
      */
-    public void place(Animal animal, int row, int col) {
-        place(animal, new Location(row, col));
+    public void place(Object object, int row, int col) {
+        place(object, new Location(row, col));
     }
 
     /**
@@ -63,8 +63,8 @@ public class Field {
      * @param animal The animal to be placed.
      * @param location Where to place the animal.
      */
-    public void place(Animal animal, Location location) {
-        field[location.getRow()][location.getCol()] = animal;
+    public void place(Object object, Location location) {
+        field[location.getRow()][location.getCol()] = object;
     }
 
     /**
@@ -72,7 +72,7 @@ public class Field {
      * @param location Where in the field.
      * @return The animal at the given location, or null if there is none.
      */
-    public Animal getObjectAt(Location location) {
+    public Object getObjectAt(Location location) {
         return getObjectAt(location.getRow(), location.getCol());
     }
 
@@ -82,7 +82,7 @@ public class Field {
      * @param col The desired column.
      * @return The animal at the given location, or null if there is none.
      */
-    public Animal getObjectAt(int row, int col) {
+    public Object getObjectAt(int row, int col) {
         return field[row][col];
     }
 
@@ -148,8 +148,8 @@ public class Field {
         List<Location> adjLocations = adjacentLocations(location);
 
         for (Location loc : adjLocations) {
-          Animal animal = field[loc.getRow()][loc.getCol()];
-          if (animal.isAlive())
+          Object object = field[loc.getRow()][loc.getCol()];
+          if (object instanceof Animal animal && animal.isAlive())
             neighbours.add(animal);
         }
         Collections.shuffle(neighbours, rand);

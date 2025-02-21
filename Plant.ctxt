@@ -4,5 +4,5 @@ comment0.text=\r\n\ This\ is\ a\ plant\r\n
 comment1.params=randomAge\ field
 comment1.target=Plant(boolean,\ Field)
 comment2.params=
-comment2.target=javafx.scene.paint.Color\ getColour()
+comment2.target=javafx.scene.paint.Color\ getColor()
 numComments=3

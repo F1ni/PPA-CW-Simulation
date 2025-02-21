@@ -105,9 +105,9 @@ public class FieldStats {
         reset();
         for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
-                Animal animal = field.getObjectAt(row, col);
+                Object object = field.getObjectAt(row, col);
 
-                if (animal != null) {
+                if (object instanceof Animal animal && animal != null) {
                     incrementCount(animal.getClass());
                 }
             }

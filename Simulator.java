@@ -101,6 +101,11 @@ public class Simulator {
                     animals.add(rat);
                 }
                 // else leave the location empty.
+                else {
+                    Location location = new Location(row, col);
+                    Plant plant = new Plant(true, field);
+                    field.place(plant, location);
+                }
             }
         }
     }

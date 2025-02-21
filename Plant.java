@@ -2,7 +2,7 @@ import javafx.scene.paint.Color;
 /**
  * This is a plant
  */
-public class Plant {
+public class Plant extends LivingThing {
     private boolean alive;
     private Field field;
     private Color color;
@@ -10,11 +10,11 @@ public class Plant {
     public Plant (boolean randomAge, Field field) {
         alive = true;
         this.field = field;
-        this.color = Color.GREEN;
+        this.color = Color.LIGHTGREEN;
     }
     
     
-    public Color getColour() {
+    public Color getColor() {
         return color;
     }
 }

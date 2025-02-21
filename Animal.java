@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
  * @version 2025.02.10
  */
 
-public abstract class Animal {
+public abstract class Animal extends LivingThing {
     
     private boolean alive;
     private Field field;

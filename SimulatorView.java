@@ -94,14 +94,15 @@ public class SimulatorView extends Application {
         
         for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
-                Animal animal = field.getObjectAt(row, col);
+                Object obj = field.getObjectAt(row, col);
         
-                if (animal != null && animal.isAlive()) {
+                if (obj instanceof Animal animal && animal.isAlive()) {
                     stats.incrementCount(animal.getClass());
                     fieldCanvas.drawMark(col, row, animal.getColor());
                 }
-                else {
-                    fieldCanvas.drawMark(col, row, Color.LIGHTGREEN);
+                else if (obj instanceof Plant plant) {
+                    stats.incrementCount(plant.getClass());
+                    fieldCanvas.drawMark(col, row, plant.getColor());
                 }
             }
         }
