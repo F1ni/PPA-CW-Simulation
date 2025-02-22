@@ -67,7 +67,6 @@ public abstract class Animal{
                 field.clear(location);
                 // place a plant at the location where the animal died
                 Plant plant = new Plant(field, location, Color.LIGHTGREEN);
-                field.place(plant, location);
             }
             location = null;
             field = null;

@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Prey
+comment1.params=
+comment1.target=int\ getPlantValue()
+comment2.params=field\ location\ col\ randomAge
+comment2.target=Prey(Field,\ Location,\ javafx.scene.paint.Color,\ boolean)
+comment3.params=
+comment3.target=Location\ findFood()
+numComments=4

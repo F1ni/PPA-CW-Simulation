@@ -10,12 +10,13 @@ import javafx.scene.paint.Color;
  * @version 2025.02.10
  */
 
-public class Beaver extends Animal {
+public class Beaver extends Prey {
 
     private static final int BREEDING_AGE = 10;
     private static final int MAX_AGE = 60;
     private static final double BREEDING_PROBABILITY = 0.15;
     private static final int MAX_LITTER_SIZE = 4;
+    private static final int PLANT_FOOD_VALUE = 3;
     private static final Random rand = Randomizer.getRandom();
     
     private int age;
@@ -30,11 +31,6 @@ public class Beaver extends Animal {
      */
     public Beaver(boolean randomAge, Field field, Location location, Color col) {
         super(field, location, col, randomAge);
-        age = 0;
-        
-        if (randomAge) {
-            age = rand.nextInt(MAX_AGE);
-        }
     }
     
     @Override
@@ -62,12 +58,21 @@ public class Beaver extends Animal {
         return new Beaver(false, field, loc, getColor());
     }
     
+    @Override
+    protected int getPlantValue() {
+        return PLANT_FOOD_VALUE;
+    }
+    
     public void act(List<Animal> newBeavers) {
         incrementAge();
+        incrementHunger();
         if(isAlive()) {
-            giveBirth(newBeavers);            
+            giveBirth(newBeavers);
+            Location newLocation = findFood();
+            if (newLocation == null) {
             // Try to move into a free location.
-            Location newLocation = getField().getFreeAdjacentLocation(getLocation());
+                newLocation = getField().getFreeAdjacentLocation(getLocation());
+            }
             if(newLocation != null) {
                 setLocation(newLocation);
             }

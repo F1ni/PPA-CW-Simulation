@@ -10,12 +10,13 @@ import javafx.scene.paint.Color;
  * @version 2025.02.10
  */
 
-public class Rabbit extends Animal {
+public class Rabbit extends Prey {
 
     private static final int BREEDING_AGE = 5;
     private static final int MAX_AGE = 40;
     private static final double BREEDING_PROBABILITY = 0.12;
     private static final int MAX_LITTER_SIZE = 4;
+    private static final int PLANT_FOOD_VALUE = 5;
     private static final Random rand = Randomizer.getRandom();
     
     private int age;
@@ -30,11 +31,6 @@ public class Rabbit extends Animal {
      */
     public Rabbit(boolean randomAge, Field field, Location location, Color col) {
         super(field, location, col, randomAge);
-        age = 0;
-        
-        if (randomAge) {
-            age = rand.nextInt(MAX_AGE);
-        }
     }
     
     @Override
@@ -62,6 +58,12 @@ public class Rabbit extends Animal {
         return new Rabbit(false, field, loc, getColor());
     }
     
+    @Override
+    protected int getPlantValue() {
+        return PLANT_FOOD_VALUE;
+    }
+    
+    
     /**
      * This is what the rabbit does most of the time - it runs 
      * around. Sometimes it will breed or die of old age.
@@ -69,10 +71,14 @@ public class Rabbit extends Animal {
      */
     public void act(List<Animal> newRabbits) {
         incrementAge();
+        incrementHunger();
         if(isAlive()) {
-            giveBirth(newRabbits);            
+            giveBirth(newRabbits);
+            Location newLocation = findFood();
+            if (newLocation == null) {
             // Try to move into a free location.
-            Location newLocation = getField().getFreeAdjacentLocation(getLocation());
+                newLocation = getField().getFreeAdjacentLocation(getLocation());
+            }
             if(newLocation != null) {
                 setLocation(newLocation);
             }
