@@ -20,6 +20,4 @@ comment6.params=
 comment6.target=Field\ getField()
 comment7.params=
 comment7.target=int\ getStep()
-comment8.params=
-comment8.target=java.util.List\ getAnimals()
-numComments=9
+numComments=8

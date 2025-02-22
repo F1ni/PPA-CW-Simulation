@@ -1,8 +1,12 @@
 #BlueJ class context
 comment0.target=Plant
-comment0.text=\r\n\ This\ is\ a\ plant\r\n
-comment1.params=randomAge\ field
-comment1.target=Plant(boolean,\ Field)
-comment2.params=
-comment2.target=javafx.scene.paint.Color\ getColor()
-numComments=3
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Plant\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=field\ location\ col
+comment1.target=Plant(Field,\ Location,\ javafx.scene.paint.Color)
+comment2.params=newLocation
+comment2.target=void\ setLocation(Location)
+comment3.params=
+comment3.target=javafx.scene.paint.Color\ getColour()
+comment4.params=col
+comment4.target=void\ setColour(javafx.scene.paint.Color)
+numComments=5

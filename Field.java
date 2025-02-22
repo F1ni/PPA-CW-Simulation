@@ -2,7 +2,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
- 
+
 /**
  * Represent a rectangular grid of field positions.
  * Each position stores an Animal
@@ -53,8 +53,8 @@ public class Field {
      * @param row Row coordinate of the location.
      * @param col Column coordinate of the location.
      */
-    public void place(Object object, int row, int col) {
-        place(object, new Location(row, col));
+    public void place(Object livingThing, int row, int col) {
+        place(livingThing, new Location(row, col));
     }
 
     /**
@@ -63,8 +63,8 @@ public class Field {
      * @param animal The animal to be placed.
      * @param location Where to place the animal.
      */
-    public void place(Object object, Location location) {
-        field[location.getRow()][location.getCol()] = object;
+    public void place(Object livingThing, Location location) {
+        field[location.getRow()][location.getCol()] = livingThing;
     }
 
     /**
@@ -148,9 +148,13 @@ public class Field {
         List<Location> adjLocations = adjacentLocations(location);
 
         for (Location loc : adjLocations) {
-          Object object = field[loc.getRow()][loc.getCol()];
-          if (object instanceof Animal animal && animal.isAlive())
-            neighbours.add(animal);
+          Object livingThing = field[loc.getRow()][loc.getCol()];
+          if (livingThing instanceof Animal) {
+              Animal animal = (Animal) livingThing;
+              if (animal.isAlive()) {
+                neighbours.add(animal);
+              }
+          }
         }
         Collections.shuffle(neighbours, rand);
       }

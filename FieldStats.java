@@ -105,10 +105,10 @@ public class FieldStats {
         reset();
         for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
-                Object object = field.getObjectAt(row, col);
+                Object livingThing = field.getObjectAt(row, col);
 
-                if (object instanceof Animal animal && animal != null) {
-                    incrementCount(animal.getClass());
+                if (livingThing != null) {
+                    incrementCount(livingThing.getClass());
                 }
             }
         }
