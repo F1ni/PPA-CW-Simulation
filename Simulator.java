@@ -82,7 +82,7 @@ public class Simulator {
                     Fox fox = new Fox(true, field, location, Color.TAN);
                     animals.add(fox);
                 }
-                /**
+                
                 else if (rand.nextDouble() <= BEAR_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     Bear bear = new Bear(true, field, location, Color.BLACK);
@@ -103,7 +103,7 @@ public class Simulator {
                     Rat rat = new Rat(true, field, location, Color.LIGHTGREY);
                     animals.add(rat);
                 }
-                **/
+                
                 // else leave the location empty.
                 else {
                     Location location = new Location(row, col);
