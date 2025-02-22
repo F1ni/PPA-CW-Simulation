@@ -48,8 +48,13 @@ public class Simulator {
         for(Iterator<Animal> it = animals.iterator(); it.hasNext(); ) {
             Animal animal = it.next();
             animal.act(newAnimals);
-            if(! animal.isAlive()) {
+            if(!animal.isAlive()) {
+                Location location = animal.getLocation();
                 it.remove();
+                if (location != null && field.getObjectAt(location) == null) {
+                    Plant plant = new Plant(true, field);
+                    field.place(plant, location.getRow(), location.getCol());
+                }
             }
         }
                
@@ -77,7 +82,7 @@ public class Simulator {
             for(int col = 0; col < field.getWidth(); col++) {
                 if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Fox fox = new Fox(true, field, location, Color.BROWN);
+                    Fox fox = new Fox(true, field, location, Color.BLACK);
                     animals.add(fox);
                 }
                 else if (rand.nextDouble() <= BEAR_CREATION_PROBABILITY) {
@@ -87,17 +92,17 @@ public class Simulator {
                 }
                 else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(true, field, location, Color.GREY);
+                    Rabbit rabbit = new Rabbit(true, field, location, Color.RED);
                     animals.add(rabbit);
                 }
                 else if (rand.nextDouble() <= BEAVER_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col);
-                    Beaver beaver = new Beaver(true, field, location, Color.BLUE);
+                    Location location = new Location(row, col); 
+                    Beaver beaver = new Beaver(true, field, location, Color.BLACK);
                     animals.add(beaver);
                 }
                 else if (rand.nextDouble() <= RAT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Rat rat = new Rat(true, field, location, Color.YELLOW);
+                    Rat rat = new Rat(true, field, location, Color.BLACK);
                     animals.add(rat);
                 }
                 // else leave the location empty.
@@ -130,5 +135,8 @@ public class Simulator {
 
     public int getStep() {
         return step;
+    }
+    public List<Animal> getAnimals() {
+        return new ArrayList<>(animals);
     }
 }

@@ -92,11 +92,16 @@ public class SimulatorView extends Application {
         genLabel.setText(GENERATION_PREFIX + generation);
         stats.reset();
         
+        int animalsListCount = simulator.getAnimals().size();
+        
+        int fieldCount = 0;
+        int aliveCount = 0;
+        
         for (int row = 0; row < field.getDepth(); row++) {
             for (int col = 0; col < field.getWidth(); col++) {
                 Object obj = field.getObjectAt(row, col);
-        
-                if (obj instanceof Animal animal && animal.isAlive()) {
+                /**
+                if (obj instanceof Animal animal && animal.isAlive() && animal != null) {
                     stats.incrementCount(animal.getClass());
                     fieldCanvas.drawMark(col, row, animal.getColor());
                 }
@@ -104,11 +109,26 @@ public class SimulatorView extends Application {
                     stats.incrementCount(plant.getClass());
                     fieldCanvas.drawMark(col, row, plant.getColor());
                 }
+                **/
+                if (obj instanceof Animal) {
+                    fieldCount++;
+                    Animal animal = (Animal) obj;
+                    if (animal.isAlive()) {
+                        aliveCount++;
+                        stats.incrementCount(animal.getClass());
+                        fieldCanvas.drawMark(col, row, animal.getColor());
+                    }
+                }
+                else if (obj instanceof Plant plant) {
+                    fieldCanvas.drawMark(col, row, plant.getColor());
+                }
             }
         }
-        
         stats.countFinished();
-        population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
+        population.setText(POPULATION_PREFIX + stats.getPopulationDetails(field) + 
+                      " [Animals List: " + animalsListCount + 
+                      ", Field Total: " + fieldCount + 
+                      ", Alive: " + aliveCount + "]");  
     }
 
     /**

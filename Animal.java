@@ -61,8 +61,11 @@ public abstract class Animal{
      */
     protected void setDead() {
         alive = false;
-        if(location != null) {
-            field.clear(location);
+        if(location != null && field != null) {
+            Object objectAtLocation = field.getObjectAt(location);
+            if (objectAtLocation == this) {
+                field.clear(location);
+            }
             location = null;
             field = null;
         }
@@ -81,11 +84,16 @@ public abstract class Animal{
      * @param newLocation The animal's new location.
      */
     protected void setLocation(Location newLocation) {
-        if(location != null) {
-            field.clear(location);
+        if(location != null && field != null) {
+            Object objectAtLocation = field.getObjectAt(location);
+            if (objectAtLocation == this) {
+                field.clear(location);
+            }
         }
         location = newLocation;
-        field.place(this, newLocation);
+        if (field != null && newLocation != null) {
+            field.place(this, newLocation);
+        }
     }
     
     /**
@@ -143,6 +151,7 @@ public abstract class Animal{
     }
     
     public void giveBirth(List<Animal> newAnimals) {
+        Field field = getField();
         List<Location> free = field.getFreeAdjacentLocations(location);
         int births = breed();
         for (int b = 0; b < births && free.size() > 0; b++) {
