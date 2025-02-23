@@ -6,8 +6,8 @@ public abstract class Prey extends Animal {
     
     protected abstract int getPlantValue();
     
-    public Prey(Field field, Location location, Color col, boolean randomAge) {
-        super(field, location, col, randomAge);
+    public Prey(Field field, Location location, Color col, boolean randomAge, boolean diseased) {
+        super(field, location, col, randomAge, diseased);
         if (randomAge) {
             age = rand.nextInt(getMaxAge());
             foodLevel = rand.nextInt(getPlantValue());

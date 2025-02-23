@@ -8,6 +8,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import javafx.scene.layout.HBox;
+
 /**
  * A graphical view of the simulation grid. The view displays a rectangle for
  * each location.

@@ -14,8 +14,8 @@ public class Bear extends Animal {
     private static final int FOX_FOOD_VALUE = 12;
     private static final Random rand = Randomizer.getRandom();
     
-    public Bear(boolean randomAge, Field field, Location location, Color col) {
-        super(field, location, col, randomAge);
+    public Bear(boolean randomAge, Field field, Location location, Color col, boolean diseased) {
+        super(field, location, col, randomAge, diseased);
         
         if (randomAge) {
             age = rand.nextInt(MAX_AGE);
@@ -49,21 +49,29 @@ public class Bear extends Animal {
     
     @Override
     protected Animal createYoung(Field field, Location loc) {
-        return new Bear(false, field, loc, getColor());
+        return new Bear(false, field, loc, getColor(), false);
     }
     
     public void act(List<Animal> newBears) {
+        if (getDiseased()) {
+            spread();
+        }
         incrementAge();
         incrementHunger();
         if (isAlive()) {
-            giveBirth(newBears);
-            Location newLocation = findFood();
-            if (newLocation == null) {
-                newLocation = getField().getFreeAdjacentLocation(getLocation());
-            }
-            
-            if (newLocation != null) {
-                setLocation(newLocation);
+            if (deadCounter != 0) {
+                giveBirth(newBears);
+                Location newLocation = findFood();
+                if (newLocation == null) {
+                    newLocation = getField().getFreeAdjacentLocation(getLocation());
+                }
+                
+                if (newLocation != null) {
+                    setLocation(newLocation);
+                }
+                else {
+                    setDead();
+                }
             }
             else {
                 setDead();

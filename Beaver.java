@@ -29,8 +29,8 @@ public class Beaver extends Prey {
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Beaver(boolean randomAge, Field field, Location location, Color col) {
-        super(field, location, col, randomAge);
+    public Beaver(boolean randomAge, Field field, Location location, Color col, boolean diseased) {
+        super(field, location, col, randomAge, diseased);
     }
     
     @Override
@@ -55,7 +55,7 @@ public class Beaver extends Prey {
     
     @Override
     protected Animal createYoung(Field field, Location loc) {
-        return new Beaver(false, field, loc, getColor());
+        return new Beaver(false, field, loc, getColor(), false);
     }
     
     @Override
@@ -64,6 +64,9 @@ public class Beaver extends Prey {
     }
     
     public void act(List<Animal> newBeavers) {
+        if (getDiseased()) {
+            spread();
+        }
         incrementAge();
         incrementHunger();
         if(isAlive()) {

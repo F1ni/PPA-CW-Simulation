@@ -30,8 +30,8 @@ public class Fox extends Animal {
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Fox(boolean randomAge, Field field, Location location, Color col) {
-        super(field, location, col, randomAge);
+    public Fox(boolean randomAge, Field field, Location location, Color col, boolean diseased) {
+        super(field, location, col, randomAge, diseased);
         if (randomAge) {
             age = rand.nextInt(MAX_AGE);
             foodLevel = rand.nextInt(RABBIT_FOOD_VALUE);
@@ -64,7 +64,7 @@ public class Fox extends Animal {
     
     @Override
     protected Animal createYoung(Field field, Location loc) {
-        return new Fox(false, field, loc, getColor());
+        return new Fox(false, field, loc, getColor(), false);
     }
     
     /**
@@ -75,6 +75,9 @@ public class Fox extends Animal {
      * @param newFoxes A list to return newly born foxes.
      */
     public void act(List<Animal> newFoxes) {
+        if (getDiseased()) {
+            spread();
+        }
         incrementAge();
         incrementHunger();
         if(isAlive()) {

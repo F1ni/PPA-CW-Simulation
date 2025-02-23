@@ -29,8 +29,8 @@ public class Rat extends Prey {
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Rat(boolean randomAge, Field field, Location location, Color col) {
-        super(field, location, col, randomAge);
+    public Rat(boolean randomAge, Field field, Location location, Color col, boolean diseased) {
+        super(field, location, col, randomAge, diseased);
     }
     
     @Override
@@ -55,7 +55,7 @@ public class Rat extends Prey {
     
     @Override
     protected Animal createYoung(Field field, Location loc) {
-        return new Rat(false, field, loc, getColor());
+        return new Rat(false, field, loc, getColor(), false);
     }
     
     @Override
@@ -69,6 +69,9 @@ public class Rat extends Prey {
      * @param newRabbits A list to return newly born rabbits.
      */
     public void act(List<Animal> newRats) {
+        if (getDiseased()) {
+            spread();
+        }
         incrementAge();
         incrementHunger();
         if(isAlive()) {

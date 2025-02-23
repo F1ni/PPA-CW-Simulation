@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.Random;
-import javafx.scene.paint.Color; 
+import javafx.scene.paint.Color;
+import java.util.Iterator;
 
 /**
  * A class representing shared characteristics of animals.
@@ -16,6 +17,8 @@ public abstract class Animal{
     private Location location;
     private Color color;
     protected int age;
+    protected boolean diseased;
+    protected int deadCounter;
     protected int foodLevel;
     protected Random rand = Randomizer.getRandom();
     
@@ -33,8 +36,13 @@ public abstract class Animal{
      * @param location The location within the field.
      */
     
-    public Animal(Field field, Location location, Color col, boolean randomAge) {
+    public Animal(Field field, Location location, Color col, boolean randomAge, boolean diseased) {
         alive = true;
+        this.diseased = diseased;
+        //Once sick, the animal should remain alive for a xed number of steps 
+        if (diseased) {
+            deadCounter = 3;
+        }
         this.field = field;
         setLocation(location);
         setColor(col);
@@ -118,7 +126,11 @@ public abstract class Animal{
      */
     public Color getColor() {
         return color;
-    }  
+    } 
+    
+    public void setDiseased(boolean diseased) {
+        this.diseased = diseased;
+    }
     
     /**
      * Increase the age. This could result in the animal's death.
@@ -137,6 +149,9 @@ public abstract class Animal{
         foodLevel--;
         if(foodLevel <= 0) {
             setDead();
+        }
+        if (diseased) {
+            deadCounter--;
         }
     }
     
@@ -160,6 +175,31 @@ public abstract class Animal{
             Location loc = free.remove(0);
             Animal young = createYoung(field, loc);
             newAnimals.add(young);
+        }
+    }
+    
+    public boolean getDiseased() {
+        return diseased;
+    }
+    
+    //Disease can spread to other animals of the same species
+    //I dont think this works correctly
+    public void spread() {
+        Field field = getField();
+        if (field == null) {
+            return;
+        }
+        List<Location> adjacent = field.adjacentLocations(getLocation());
+        Iterator<Location> it = adjacent.iterator();
+        while(it.hasNext()) {
+            Location where = it.next();
+            Object animal = field.getObjectAt(where);
+            if(animal != null && animal.getClass() == getClass()) {
+                Animal sameAnimal = (Animal) animal;
+                if (rand.nextDouble() < 0.50) {
+                    sameAnimal.setDiseased(true);
+                }
+            }
         }
     }
 }

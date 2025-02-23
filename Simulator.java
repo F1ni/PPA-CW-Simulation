@@ -19,6 +19,7 @@ public class Simulator {
     private static final double RABBIT_CREATION_PROBABILITY = 0.08;
     private static final double BEAVER_CREATION_PROBABILITY = 0.05;
     private static final double RAT_CREATION_PROBABILITY = 0.06;
+    private static final double DISEASE_PROBABILITY = 0.50;
    
 
     private List<Animal> animals;
@@ -71,39 +72,56 @@ public class Simulator {
      * Randomly populate the field with foxes and rabbits.
      */
     private void populate() {
-        
         Random rand = Randomizer.getRandom();
         field.clear();
-        
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
                 if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Fox fox = new Fox(true, field, location, Color.TAN);
+                    Color color = Color.RED;
+                    if (isDiseased()) {
+                        color = color.darker();
+                    }
+                    Fox fox = new Fox(true, field, location, color, isDiseased());
                     animals.add(fox);
                 }
                 
                 else if (rand.nextDouble() <= BEAR_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Bear bear = new Bear(true, field, location, Color.BLACK);
+                    Color color = Color.BROWN;
+                    if (isDiseased()) {
+                        color = color.darker();
+                    }
+                    Bear bear = new Bear(true, field, location, color, isDiseased());
                     animals.add(bear);
                 }
-                else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
+                if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(true, field, location, Color.RED);
+                    Color color = Color.YELLOW;
+                    if (isDiseased()) {
+                        color = color.darker();
+                    }
+                    Rabbit rabbit = new Rabbit(true, field, location, color, isDiseased());
                     animals.add(rabbit);
                 }
                 else if (rand.nextDouble() <= BEAVER_CREATION_PROBABILITY) {
-                    Location location = new Location(row, col); 
-                    Beaver beaver = new Beaver(true, field, location, Color.SIENNA);
+                    Location location = new Location(row, col);
+                    Color color = Color.ORANGE;
+                    if (isDiseased()) {
+                        color = color.darker();
+                    }
+                    Beaver beaver = new Beaver(true, field, location, color, isDiseased());
                     animals.add(beaver);
                 }
                 else if (rand.nextDouble() <= RAT_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
-                    Rat rat = new Rat(true, field, location, Color.LIGHTGREY);
+                    Color color = Color.LIGHTBLUE;
+                    if (isDiseased()) {
+                        color = color.darker();
+                    }
+                    Rat rat = new Rat(true, field, location, color, isDiseased());
                     animals.add(rat);
                 }
-                
                 // else leave the location empty.
                 else {
                     Location location = new Location(row, col);
@@ -133,5 +151,14 @@ public class Simulator {
 
     public int getStep() {
         return step;
+    }
+    
+    public boolean isDiseased() {
+        boolean diseased = false;
+        Random rand = Randomizer.getRandom();
+        if (rand.nextDouble() <= DISEASE_PROBABILITY) {
+            diseased = true;
+        }
+        return diseased;
     }
 }
